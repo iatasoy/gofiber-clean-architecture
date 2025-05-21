@@ -1,0 +1,24 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gofiber_app
+    env_file: .env
+    ports:
+      - "${PORT}:${PORT}"
+    restart: always
+    depends_on:
+      - mongodb  # Make sure your app waits for MongoDB to be ready
+
+  mongodb:
+    image: mongo:6
+    container_name: local_mongo
+    ports:
+      - "27017:27017"  # Expose MongoDB on default port 27017
+    volumes:
+      - mongo-data:/data/db  # Data persistence
+    restart: always
+
+volumes:
+  mongo-data:  
