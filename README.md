@@ -2,66 +2,7 @@
 
 A clean and modular REST API boilerplate built with GoFiber, MongoDB, and JWT Authentication using Clean Architecture principles.
 
-## 📁 Project Structure
-
-│   .air.toml
-│   .dockerignore
-│   .env
-│   .gitignore
-│   docker-clean.bat
-│   docker-compose.yml
-│   docker-down.bat
-│   docker-up.bat
-│   dockerfile
-│   go.mod
-│   go.sum
-│   main.go
-├───.vscode
-│       launch.json
-├───configuration
-│       config.go
-├───container
-│       container.go
-├───controller
-│       user_controller.go
-├───database
-│       mongodb.go
-├───dto
-│       user_dto.go
-├───handler
-│       auth_handler.go
-│       root_handler.go
-│       user_handler.go
-├───mapper
-│       user_mapper.go
-├───middleware
-│       jwt.go
-├───model
-│       api_model.go
-│       user_model.go
-├───repository
-│       user_repository.go
-├───routes
-│       routes.go
-├───service
-│       auth_service.go
-│       user_service.go
-├───tmp
-        air.log
-└───validators
-        validators.go
-
-## 🚀 Features
-
-- ✅ JWT authentication with middleware protection
-- ✅ MongoDB integration
-- ✅ Modular clean architecture
-- ✅ DTOs and model mappers
-- ✅ Dependency injection container
-- ✅ Docker support (`docker-compose up --build` or docker compose down)
-
 ---
-
 ## 🔧 Prerequisites
 
 - [Go](https://go.dev/dl/) 1.20+
@@ -70,17 +11,55 @@ A clean and modular REST API boilerplate built with GoFiber, MongoDB, and JWT Au
 
 ---
 
+## 🚀 Features
+
+- ✅ JWT authentication with middleware protection  
+- ✅ MongoDB integration  
+- ✅ Modular clean architecture  
+- ✅ DTOs and model mappers  
+- ✅ Dependency injection container  
+- ✅ Docker support (`docker-compose up --build` or `docker-compose down`)
+
+---
+
+## 📁 Project Structure
+
+- `.air.toml`
+- `.env`
+- `main.go`
+- `docker-compose.yml`
+- `configuration/`
+- `container/`
+- `controller/`
+- `database/`
+- `dto/`
+- `handler/`
+- `mapper/`
+- `middleware/`
+- `model/`
+- `repository/`
+- `routes/`
+- `service/`
+- `validators/`
+- `tmp/`
+
+---
+
 ## 🐳 Run with Docker
 
-```bash up
+```bash
 docker-compose up --build
+```
 
-```bash down
+```bash
 docker compose down
+```
 
+---
 
-## Test
+## Use Case
 
+``` bash
 GET / HTTP/1.1
 Host: localhost:5000
 User-Agent: HTTPie
@@ -91,6 +70,9 @@ HTTP/1.1 200 OK
   "message": "Welcome to the GoFiber Clean Architecture API!"
 }
 
+```
+
+``` bash
 POST /auth/register
 Content-Type: application/json
 
@@ -112,8 +94,9 @@ HTTP/1.1 409 Conflict
   "message": "",
   "error": "Email already exists"
 }
+```
 
-
+``` bash
 POST /auth/login
 Content-Type: application/json
 
@@ -121,8 +104,6 @@ Content-Type: application/json
   "email": "john@example.com",
   "password": "secret"
 }
-
-
 
 Http/1.1 200
 {
@@ -142,8 +123,9 @@ HTTP/1.1 401 Unauthorized
   "message": "",
   "error": "Invalid email or password"
 }
+```
 
-
+``` bash
 POST /user/682daf193f5a8fcb18943a2e HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3NDgwOTY3MzQsInVzZXJpZCI6IjY4MmRhZjE5M2Y1YThmY2IxODk0M2EyZSIsInVzZXJuYW1lIjoiam9obl9kb2UxIn0.8Q9zB8OLQnaOHTBqT_nHIKvuMfOUJqWQPSJ_oiyFbjc
 Content-Length: 0
@@ -175,7 +157,22 @@ HTTP/1.1 403 Forbidden
   "message": "Access denied",
   "error": "You are not authorized to access this resource"
 }
-
+```
 
 ## 🐳 Todos
-Error Handler ,Code Refactoring more solid robotus way
+- [ ] ✅ **Centralized Error Handling**: Implement a global error handler middleware for consistent and clean error responses.
+- [ ] ✅ **Refactor to Follow SOLID Principles**: 
+  - Single Responsibility (SRP): Ensure each package/component has one well-defined responsibility.
+  - Open/Closed (OCP): Make modules extensible without modifying existing code.
+  - Interface Segregation (ISP): Use smaller, focused interfaces for better testability.
+  - Dependency Inversion (DIP): Depend on abstractions, not concrete implementations.
+- [ ] ✅ **Validation Layer**: Add reusable request validators using a middleware pattern.
+- [ ] ✅ **DTO & Mapper Enhancements**: Improve separation between internal models and external API contracts.
+- [ ] ✅ **Swagger/OpenAPI Documentation**: Generate and serve API documentation automatically.
+- [ ] ✅ **Logging Middleware**: Add structured logging for requests, responses, and errors.
+- [ ] ✅ **Request ID Tracing**: Correlate logs with unique request IDs for debugging.
+- [ ] ✅ **Unit and Integration Tests**: Cover services, handlers, and middleware with tests.
+- [ ] ✅ **Config Improvements**: Centralize configuration management with profiles (dev/test/prod).
+- [ ] ✅ **Makefile / CLI Tooling**: Add helper commands for build, lint, and test.
+
+
