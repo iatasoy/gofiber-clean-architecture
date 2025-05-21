@@ -47,10 +47,12 @@ A clean and modular REST API boilerplate built with GoFiber, MongoDB, and JWT Au
 
 ## 🐳 Run with Docker
 
+if you are use windows docker-up.bat
 ```bash
 docker-compose up --build
 ```
 
+if you are use windows docker-down.bat
 ```bash
 docker compose down
 ```
